@@ -1,5 +1,4 @@
-import tracer from 'dd-trace';
-tracer.init({ analytics: true, logInjection: true, runtimeMetrics: true });
+import "./tracer";
 
 import * as express from 'express';
 import axios from 'axios';
