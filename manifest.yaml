@@ -4,9 +4,9 @@ applications:
   - name: DataDogApp
     memory: 128M
     routes:
-      - route: ddapp-aossas.us-east.cf.appdomain.cloud
+      - route: ((host)).us-east.cf.appdomain.cloud
     env:
-      DD_API_KEY: 71c0197b40fac1d991f83a3760558a3d
+      DD_API_KEY: ((dd_api_key))
       RUN_AGENT: true
       DD_LOGS_ENABLED: true
       DD_TRACE_ENABLED: true
