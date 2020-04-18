@@ -1,5 +1,3 @@
-import './tracer';
-
 import * as cluster from 'cluster';
 import * as os from 'os';
 
@@ -13,10 +11,12 @@ if (cluster.isMaster) {
   }
 
   cluster.on('exit', (worker, code, signal) => {
-    console.log('Worker %d died :(', worker.id);
-    cluster.fork();
+    console.log('Worker %d died :(', worker.id, code, signal);
+    // cluster.fork();
   });
 } else {
+  require('dd-trace').init({ analytics: true, logInjection: true, runtimeMetrics: true });
+
   const express = require('express');
   const app = express();
 
@@ -30,7 +30,7 @@ if (cluster.isMaster) {
   });
 
   app.get('/cpus', (req: Request, res: Response) => {
-    res.send('cpus: ' + os.cpus().length);
+    res.send(os.cpus());
   });
 
   app.get('/work', (req: Request, res: Response) => {
@@ -40,7 +40,7 @@ if (cluster.isMaster) {
   });
 
   app.get('/', (req: Request, res: Response) => {
-    console.log(`Worker ${process.pid} runnnig`);
+    console.log(`Worker ${process.pid} running`);
     res.send('Hello World!');
   });
 

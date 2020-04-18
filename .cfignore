@@ -1,1 +1,5 @@
 /tsconfig.tsbuildinfo
+/vars.yaml
+/push.sh
+/*.ts
+/tsconfig.json
