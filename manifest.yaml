@@ -12,13 +12,7 @@ applications:
       DD_ENABLE_CHECKS: false
       STD_LOG_COLLECTION_PORT: 10514
       LOGS_CONFIG: '[{"type":"tcp","port":"10514","source":"cloudfoundry","service":"((host))"}]'
-
-      DD_TRACE_ENABLED: true
-      DD_APM_ENABLED: true
-
-      # https://docs.cloudfoundry.org/buildpacks/node/node-tips.html#memory
-      OPTIMIZE_MEMORY: true
-    # buildpacks:
-    #   - binary_buildpack
-    #   - https://cloudfoundry.datadoghq.com/datadog-cloudfoundry-buildpack/datadog-cloudfoundry-buildpack-latest.zip
-    #   - sdk-for-nodejs
+    buildpacks:
+      - binary_buildpack
+      - https://cloudfoundry.datadoghq.com/datadog-cloudfoundry-buildpack/datadog-cloudfoundry-buildpack-latest.zip
+      - sdk-for-nodejs
