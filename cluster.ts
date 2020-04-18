@@ -1,8 +1,7 @@
 import * as cluster from 'cluster';
-import * as os from 'os';
 
 if (cluster.isMaster) {
-  const numCPUs = os.cpus().length;
+  const numCPUs = require('os').cpus().length;
 
   for (let i = 0; i < numCPUs; i++) {
     cluster.fork();
@@ -13,5 +12,5 @@ if (cluster.isMaster) {
     cluster.fork();
   });
 } else {
-  require('./app');
+  require('./server');
 }
